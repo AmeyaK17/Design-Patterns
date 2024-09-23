@@ -6,12 +6,21 @@ public class Main {
         Handler intermediateSupport = new IntermediateSupportHandler();
         Handler advancedSupport = new AdvancedSupportHandler();
 
-        basicSupport.handle("Basic", intermediateSupport);
+        basicSupport.setNextHandler(intermediateSupport);
+        intermediateSupport.setNextHandler(advancedSupport);
 
-        basicSupport.handle("Intermediate", intermediateSupport);
+        basicSupport.handle("Basic");
 
-        basicSupport.handle("Advanced", advancedSupport);
+        System.out.println();
 
-        basicSupport.handle("Unknown", intermediateSupport);
+        basicSupport.handle("Intermediate");
+
+        System.out.println();
+
+        basicSupport.handle("Advanced");
+
+        System.out.println();
+
+        basicSupport.handle("Unknown");
     }
 }
